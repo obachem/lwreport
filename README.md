@@ -5,6 +5,6 @@ To install:
 ```
 git clone git@gitlab.inf.ethz.ch:bachemo/lwreport.git
 cd lwreport
-pip install -e '[all]'
+pip install -e '.[all]'
 lwrsample
 ```
