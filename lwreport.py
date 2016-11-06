@@ -102,7 +102,7 @@ def _parse_obj(obj):
         return DFrame(obj)
     elif _PLY and isinstance(obj, go.Figure):
         return Plot(obj)
-    elif _MPL and isinstance(obj, mpl.figure.Figure):
+    elif _MPL and isinstance(obj, matplotlib.figure.Figure):
         return MPlot(obj)
     else:
         raise ValueError("Type '%s' not supported for rendering!" % type(obj))
@@ -325,7 +325,7 @@ class DFrame(RenderObject):
     def _render(self, level):
         if _PDS:
             return "<div class='table-responsive'>%s</div>" % self.df.to_html(
-                classes=_TABLE_CLS, float_format=lambda x: '%.2g' % x)
+                classes=_TABLE_CLS, float_format=lambda x: '%.3g' % x)
         else:
             return str(self.df)
 
@@ -519,6 +519,7 @@ def _get_url(url):
 try:
     _logger.debug("Trying to load Matplotlib!")
     import matplotlib as mpl
+    import matplotlib.figure
     _MPL = True
 except ImportError:
     _logger.info("Matplotlib not available!")
